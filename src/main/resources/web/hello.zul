@@ -1,0 +1,35 @@
+<zk>
+    <window title="${labels.mvvm.title}" apply="org.zkoss.bind.BindComposer"
+            viewModel="@id('vm') @init('iisi.example.gia.vm.HelloVM')">
+        <label value="@load(vm.empno)"/>
+        <textbox value="@load(vm.empno) @save(vm.empno, before={'submit'})"
+                 width="150px"/>
+        <textbox value="@load(vm.ename) @save(vm.empno, before={'submit'})"
+                 width="150px"/>
+<!--        <textbox value="@load(vm.empno) @save(vm.empno)"-->
+<!--                 width="150px"/>-->
+<!--        <textbox value="@bind(vm.empno)"-->
+<!--                 width="150px"/>-->
+        <separator/>
+        <button label="Submit" onClick="@command('submit')"
+                width="100px" height="30px"/>
+        <separator/>
+        <listbox
+                model="@bind(vm.empDOList)" emptyMessage="No car found in the result"
+                selectedItem="@bind(vm.selectItem)" style="margin-top:10px" mold="paging" pageSize="10">
+            <listhead>
+                <listheader label="empno"/>
+                <listheader label="ename"/>
+                <listheader label="job"/>
+            </listhead>
+            <template name="model">
+                <listitem>
+                    <listcell label="@bind(each.empno)"></listcell>
+                    <listcell label="@bind(each.ename)"></listcell>
+                    <listcell label="@bind(each.job)"></listcell>
+                </listitem>
+            </template>
+        </listbox>
+
+    </window>
+</zk>
